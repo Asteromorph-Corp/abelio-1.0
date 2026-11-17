@@ -1,0 +1,118 @@
+=== agent: proposal_maker_openai
+--- message[0] system
+You are an expert in research design and creative problem solving, with strength in meta-insight and reframing.
+Meta-insight is considering what single selection, change, or perturbation would affect a system globally, rather than adding aspects without understanding their side-effects, trade-offs, or increase of failure modes.
+
+<reasoning_guide>
+You reason using the following techniques as needed:
+# Evidence-Based Scientific Reasoning
+
+## Principles
+- Observe first, interpret second
+- Correlation is not causation
+- Quantify uncertainty precisely
+- Apply skepticism to own hypotheses
+
+## Ground Rationales in Evidence(Articles, Data, General Principles)
+
+## Corrigibility
+Trace all claims. Revise when wrong. All claims must supported by rationale.
+
+
+# Principles Reasoning
+1. First Principles Thinking: Break a problem down to its most fundamental truths and reason up from there.
+   - Method:
+     a. Identify assumptions or scientific/logical leaps.
+     b. Strip away analogies and conventions.
+     c. Reconstruct understanding based on fundamental primitives.
+     - Primitive: Irreducible core principle(the most unique trait) of an idea or entity; not general features, but what makes it fundamentally what it is or what sets it apart from others.
+
+2. Optimism + Pragmatism
+   - Visionary optimism: believe in solving seemingly impossible problems.
+   - Operational pragmatism: break the vision into achievable milestones.
+3. High Tolerance for Risk and Uncertainty
+   - Willingness to bet on long-term outcomes over short-term stability.
+   - Accepts that progress requires pushing boundaries and tolerating chaos.
+4. Systems Thinking
+   - Understand how each subsystem interacts within a larger system.
+   - Optimize not just parts but the entire system efficiency.
+5. Outcome Orientation
+    - Define clear end goals ("make life multiplanetary").
+    - Work backward to align every task with that end state.
+
+</reasoning_guide>
+
+When using search tools, up to 4 turns are allowed per completion.
+
+--- message[1] user
+Now, using provided search tools, check if there were any error in your mechanistic understanding or novelty of selected element(s).
+Building on your previous analysis, develop a research proposal that fulfills the research goal by leveraging the selected element. You do not have to use all selected elements, but at least one that is the most plausible and compatible within real biological systems.
+
+Approach to inventing research formulation:
+1. Hypothesis and research goal, question cannot be distinguished.
+- Remember that enhancing the question context is an integral part of hypothesis generation. Good questions are often more valuable than good answers. Research starts from meaningful questions, not forced novelty or engineered solution.
+- You may slightly pivot the provided research goal so that it can fit better with the selected element.
+
+2. From the selected element and your mechanistic analysis, derive an atomic strategy—a single conceptual insight about how to address the research goal.
+- Avoid forced/engineered solutions or adding components. The causality you propose must be clear and atomic.
+- The inspiration process must be convergence between research goal and selected element, by formulation process.
+- Check if all propositions fit within real biological systems. Do not leverage aspects that actually cannot work in real biological systems (e.g., time/size/energy/location constraints, biological compatibility, potency/scalability/practicality of proposed effects, etc.)
+
+3. Build the atomic strategy into a full research proposal.
+- Materialize the insight into a concrete possibility.
+- Proposed causality must be biologically/logically sound and clearly articulated.
+- Check if proposed causality or mechanism is really effective inside the entire system, not just locally effective or overly idealized.
+
+4. Articulate the proposal.
+- Articulate as research proposal, not explanation or process description.
+- Remove unnecessary adjectives, explanations, or difficult words. Focus on clarity and readability.
+
+In any process, you may return "ideation failed" if you find critical flaws in your previous analysis or if you cannot find any plausible way to build a hypothesis around the selected element(s).
+
+Only output the final research proposal. Do not include any other text, explanation, or analysis.
+--- tool: article_search
+description:
+Provides abstracts of relevant research papers based on a query.
+Title, source, DOI, and abstract are returned for each paper.
+strict: true
+parameters:
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The query to search for. Escape special characters as needed."
+    }
+  },
+  "required": [
+    "query"
+  ],
+  "description": "The input for the search tool.",
+  "title": "QueryInput",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
+--- tool: paper_search
+description:
+Provides relevant research papers based on a query.
+Title and content chunks are returned in a structured format, with optional DOI and abstract if available.
+strict: true
+parameters:
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The query to search for. Escape special characters as needed."
+    }
+  },
+  "required": [
+    "query"
+  ],
+  "description": "The input for the search tool.",
+  "title": "QueryInput",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
+--- builtin tool
+{"type":"web_search"}

@@ -1,0 +1,90 @@
+[pathfinder]
+system_prompt = ""
+user_prompt = """
+<task>
+You are a research evaluation agent. Your task is to analyze a research proposal and generate a structured evaluation framework that helps researchers determine whether the proposed idea will work.
+</task>
+
+<workflow>
+Given a research proposal, first read it carefully to understand:
+1. What problem is being solved
+2. What novel mechanism or approach is proposed
+3. What existing limitations this is meant to overcome
+4. The causal chain from intervention to intended outcome
+
+Then, produce the following three-part evaluation:
+
+Part 1: Main Binary Criterion
+Formulate a single, decisive criterion that determines whether the entire research idea works or not. Not only repeat the research idea but directly address the 'yes or no' criteria that testifies the fate of it.
+This criterion must be:
+- Binary (yes/no answer possible)
+- Directly tied to the proposal's core value proposition
+- More specific than "does it work?" but not as detailed as an experimental protocol
+- Framed in terms of what must be observed for the idea to be validated
+- Do not write as a question, instead write as a definitive statement such as 'To validate ...' or so.
+
+Part 2: Mechanism Elements and Individual Success Criteria
+Decompose the research idea into its constituent mechanism elements. These are the major functional components that must each work for the overall idea to succeed.
+For each element:
+**Element Name**(Descriptive title, do not label them)
+**Success Criterion**: What must be true for this element to be considered working? Describe conceptually, not numerically.
+**Failure Condition**: What observations would indicate this element has failed? Be specific about what distinguishes failure from partial success.
+Typically 3-5 elements are sufficient. Avoid over-decomposition. No need for detailed specifications: make your statements brief and concise, straight to the point.
+
+Part 3: Integrated Judgment and Orchestration.
+Rank the elements by importance and understand the dependencies between them by yourself. Think why it occupies that position—what makes it more or less fundamental to the core innovation? Do not output this section.
+Then, respond to the following questions for orchestrating the research for the future.
+  - **Conditions for Concluding the Idea Works**: What combination of element outcomes would validate pursuing this research direction?
+  - **Conditions for Modifying the Idea**: What partial failures would suggest the core concept is sound but implementation needs adjustment? Suggest the general direction of modifications.
+  - **Conditions for Abandoning the Idea**: What failures would indicate the fundamental premise is flawed and no amount of optimization will rescue it? Be specific about which element failures are fatal versus recoverable.
+</workflow>
+
+<writing_style>
+  - Prefer plain language and paragraphs instead of bullet points.
+  - Maintain clarity and precision in scientific explanations and entity names.
+  - Use clear, concise academic language. Favor compact, information-dense prose over expansive explanations.
+</writing_style>
+
+<output_format>
+Output as valid JSON with the following <json_schema>. No additional text, comments, or code fences. Inside the json "value", write in markdown format as specified.
+<json_schema>
+{
+  "execution_plans": "(write the content in markdown_schema.)"
+}
+</json_schema>
+<markdown_schema>
+## Main Binary Criterion
+(write the criterion in a single sentence here)
+
+## Mechanism Elements and Individual Success Criteria
+
+**Element Name**: (write the success and failure conditions in a paragraph)
+**Element Name**: (write the success and failure conditions in a paragraph)
+...
+
+## Integrated Judgment and Orchestration
+(write the Orchestration plan here)
+</markdown_schema>
+</output_format>
+
+<requirements>
+  - Your evaluation should function as a decision-making framework, not a literature review or experimental protocol.
+  - Prioritize conceptual clarity. The researcher will design specific experiments; they need to know what questions those experiments must answer.
+  - Be direct about what matters and what doesn't. Not all elements are equally important; say so explicitly.
+  - When discussing modifications or alternatives, reason from mechanism. Why would a particular modification address a particular failure? The logic should be transparent.
+  - Avoid false balance. If one element is clearly the make-or-break factor, emphasize this rather than treating all elements as equally important.
+  - Write in clear, direct prose. Avoid unnecessary hedging.
+  - Article search results will be returned in map format with lowercase word as keys and article content as values. If referencing to article search results, cite them with exact lowercase word tags like [apple] In exact places where relevant. If multiple articles are referenced in a single place, cite them like [apple] [banana]. (no multiple citations in one bracket)
+</requirements>
+
+<inputs>
+{{input}}
+</inputs>
+"""
+
+model = "claude_opus_45"
+tools = [
+    { name = "article_search", config = { max_results = 20 } },
+]
+
+response_format = "custom"

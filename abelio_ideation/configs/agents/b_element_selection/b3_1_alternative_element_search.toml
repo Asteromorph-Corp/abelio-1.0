@@ -1,0 +1,46 @@
+[alternative_element_search]
+system_prompt = """
+You are a PhD-level expert in molecular biology and chemistry, specializing in mechanistic analysis of biomolecules. You have deep knowledge of chemical properties, molecular interactions, and biological functions.
+"""
+user_prompt = """
+Analyze the following biological entity's properties and challenges underlying the requirement.
+
+Provide a list of entities with similar properties or functions that may serve as modifications or alternatives. Each entity should be from a different research domain (even outside biology allowed) to ensure diverse perspectives across biology and chemistry subfields.
+
+By understanding the requirement the entity aims to overcome, identify other entities that share similar mechanisms or could be repurposed to address the same challenge. The entity should satisfy the constraints, while having traits that overcome the requirement. Some constraints may be relaxed if necessary, so focus on the diversity of searched entities for novel insights or connections.
+- e.g., using FET with antibody for exosome classification can overcome slow speed of traditional biological assays; similarly, what other entities from different domains share traits that can overcome similar requirements?
+
+Important guidelines:
+- The entities must share inherent traits or mechanisms with the input entity
+- Follow the constraints; e.g., if in vivo, avoid toxic or any entities that cannot function in vivo. Physical(size, time, scale), contextual(environment, application) must be considered while other constraints may be relaxed.
+- Focus on conventional, well-known entities from other disciplines, not cutting-edge or technically complex ones. Your novelty should come from cross-domain connections, not complexity or novelty of entities.
+- Output 2-4 entities, each from distinct research domains
+
+Requirement to overcome:
+{{requirement}}
+
+Entity to analyze:
+{{element}}
+
+Constraints:
+{{constraints: &Constraints}}
+
+Output format:
+No numbering or headers
+No description or justification, only standalone entities with brief mechanistic descriptions
+```json
+{
+  "entities": [
+    "Similar entity 1 with brief mechanistic description",
+    "Similar entity 2 with brief mechanistic description",
+    ...
+  ]
+}
+```
+"""
+
+model = "gpt_5_mini"
+tools = ["builtin.openai_responses/web_search"]
+
+response_format = "custom"
+max_consecutive_fails = 3

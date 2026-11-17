@@ -1,0 +1,34 @@
+[divergent_formulation_gaps]
+system_prompt = "{{config.divergent_formulation_system}}"
+user_prompt = """
+<input>
+{{config.divergent_formulation_input}}
+</input>
+
+Task: Generate distinct research goals that address unresolved questions, contradictions, or knowledge gaps identified in existing literature.
+
+<process>
+1. Using the provided search tools, analyze the failed attempts, failure points, or limitations in addressing the given research goal.
+- Gather diverse approaches and perspectives from recent studies.
+
+2. Based on the analysis, identify the target points where current research falls short, including any contradictions or unexplored areas.
+- Analyze where methodologies or assumptions may have led to failures.
+- Missing functions, trade-offs, or biological traits may be included as cause of failures.
+
+3. Synthesize different research goals that address the identified mechanistic components or steps from distinct perspectives.
+- Each research goal should clearly contribute to advancing understanding or solving a limitation in the original research goal.
+- Do not propose 'how to' but 'what to target/invent/overcome' type of research goals based on current limitations.
+- Ensure that the formulated research goals has no biological flaws or target impossible mechanisms.
+- Each research goal should be addressable within a reasonable timeframe (e.g., 1-3 years) and resource constraints typical for academic research projects. Do not desire overly ambitious or vague goals.
+</process>
+
+{{config.divergent_formulation_output_format}}
+"""
+
+model = "gpt_51"
+tools = [
+   { name = "article_search", config = { max_results = 5 } },
+   { name = "paper_search", config = { max_results = 3 } },
+]
+
+response_format = "custom"

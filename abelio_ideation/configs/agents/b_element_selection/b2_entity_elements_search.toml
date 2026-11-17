@@ -1,0 +1,28 @@
+# `tool_choice` lives in the overrides rather than the base, since talin merges `call_options` and xAI models must not get it.
+[entity_element_search]
+system_prompt = "{{config.entity_system}}"
+user_prompt = "{{config.entity_user}}"
+
+model = "deepseek_v32"
+
+response_format = "custom"
+max_iterations = 5
+max_consecutive_fails = 3
+
+[entity_element_search.if.model_type.generic_chat]
+call_options = { tool_choice = "required" }
+
+[entity_element_search.if.model_type.openai_chat]
+call_options = { tool_choice = "required" }
+
+[entity_element_search.if.model_type.claude_messages]
+call_options = { tool_choice = "required" }
+tools = ["builtin.claude_messages/web_search_20250305"]
+
+[entity_element_search.if.model_type.gemini_generate_content]
+call_options = { tool_choice = "auto" }
+tools = ["builtin.gemini_generate_content/google_search"]
+
+[entity_element_search.if.model_type.openai_responses]
+call_options = { tool_choice = "required" }
+tools = ["builtin.openai_responses/web_search"]

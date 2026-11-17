@@ -1,0 +1,7 @@
+[deepseek_v32]
+api_base = "https://openrouter.ai/api/v1"
+model = "deepseek/deepseek-v3.2"
+temperature = 1.0
+model_type = "openai_chat"
+api_key.env = "OPENROUTER_API_KEY"
+extra_params = { reasoning = { enabled = true } }

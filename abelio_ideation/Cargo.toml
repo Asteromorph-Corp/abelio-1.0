@@ -1,0 +1,58 @@
+[package]
+name = "abelio_ideation"
+description = "LLM-powered ideation pipeline that transforms a research objective into ideas"
+version = "1.0.0"
+edition = "2024"
+license = "PolyForm-Noncommercial-1.0.0"
+publish = false
+readme = "README.md"
+
+[[bin]]
+name = "abelio_ideation"
+path = "src/main.rs"
+required-features = ["cli"]
+
+[features]
+default = []
+cli = ["dep:tracing-subscriber", "dep:clap", "dep:dotenvy"]
+
+[dependencies]
+tracing = "0.1"
+dotenvy = { version = "0.15", optional = true }
+
+talin = "0.1.0"
+resm = { path = "../vendor/resm" }
+science-search = { path = "../vendor/science-search" }
+
+serde = "1"
+serde_json = "1"
+schemars = "1.2"
+toml = "0.9"
+
+tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
+rayon = "1"
+futures = "0.3"
+
+tonic = "0.14"
+tonic-prost = "0.14"
+prost = "0.14"
+
+reqwest = { version = "0.13", features = ["json"] }
+
+rand = "0.9"
+anyhow = "1"
+
+tracing-subscriber = { version = "0.3", features = ["env-filter"], optional = true }
+clap = { version = "4", features = ["derive"], optional = true }
+
+rerankers = { path = "../vendor/rerankers" }
+
+[dev-dependencies]
+mockito = "1.7"
+dotenvy = "0.15"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[build-dependencies]
+talin-build = "0.1.0"
+tonic-prost-build = "0.14"
+protox = "0.9"

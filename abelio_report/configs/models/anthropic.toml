@@ -1,0 +1,13 @@
+[claude_opus_45]
+api_base = "https://api.anthropic.com/v1"
+model = "claude-opus-4-5-20251101"
+model_type = "claude_messages"
+api_key.env = "ANTHROPIC_API_KEY"
+anthropic_beta = ["structured-outputs-2025-11-13"]
+
+[claude_sonnet_45]
+api_base = "https://api.anthropic.com/v1"
+model = "claude-sonnet-4-5-20250929"
+model_type = "claude_messages"
+api_key.env = "ANTHROPIC_API_KEY"
+anthropic_beta = ["structured-outputs-2025-11-13"]

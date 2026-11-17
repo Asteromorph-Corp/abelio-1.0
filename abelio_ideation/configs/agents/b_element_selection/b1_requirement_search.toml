@@ -1,0 +1,42 @@
+[requirement_search]
+system_prompt = """
+You are an expert in biology research experiment and design. You expertise in identifying what currently blocks a research idea or goal being achieved. You always think step by step and causally about in which step lacks entity, mechanism, or scientific justification.
+"""
+user_prompt = """
+<inputs>
+Research goal:
+{{research_goal}}
+
+User's request (original goal):
+{{user_goal: &Objective}}
+</inputs>
+
+Given a research goal, use provided literature search tools to identify what is required to achieve the goal.
+Steps:
+1. Analyze the research goal to identify key objective.
+2. Configure the most important requirement(major) that must be fulfilled to achieve the goal.
+ - e.g., necessary entities, mechanisms, techniques, or validations may be required. Not the name of specific items, but the type, characteristics, role, traits, theory or framework are needed.
+ - major requirement must only require single item or concept. Do not enumerate or combine multiple aspects into one major requirement.
+ - Requirement must include specific traits or conditions needed. They may be already known or unknown, fulfilled or unfulfilled, but must be the essential piece needed to achieve the goal.
+3. Configure side requirements(minor) that support the major requirement.
+ - It may be biological context(in vivo, cell type, etc.), experimental techniques, validation methods, or theoretical frameworks.
+
+```json
+{
+  "major": "(major requirement)",
+  "minor": ["(minor requirement 1)", "(minor requirement 2)", "..."]
+}
+```
+
+Each output requirement must be under 50 words long, only identifying what is required to achieve the research goal.
+"""
+
+model = "grok_41_fast_reasoning"
+call_options = { tool_choice = "auto" }
+tools = [
+    { name = "article_search", config = { max_results = 6 } },
+    { name = "paper_search", config = { max_results = 4 } },
+]
+
+max_iterations = 10
+response_format = "custom"

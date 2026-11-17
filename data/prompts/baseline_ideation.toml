@@ -1,0 +1,49 @@
+# Single-LLM baseline: one model, one prompt, does the whole job the pipeline
+# does — produce a set of distinct, feasible, novel research ideas for the goal,
+# as many (0-10) as genuinely clear the bar. The reference the ablated pipeline is
+# compared against. The model is chosen per call.
+
+[baseline_ideation]
+model = "deepseek_v31"
+system_prompt = """
+You are an eminent professor with broad expertise across the life sciences. You design high-quality, high-impact research ideas.
+"""
+
+user_prompt = """
+<core_goal>
+{{core_goal}}
+</core_goal>
+
+<constraints>
+{{constraints: &[String]}}
+</constraints>
+
+Propose up to 10 research ideas that address the goal — as many as genuinely clear the bar below, and no more. Propose fewer if the goal is hard, and none if nothing meets it; do not pad the list. Each idea should be a different approach.
+
+Every idea must:
+1. be scientifically plausible;
+2. be novel relative to prior work;
+3. make a substantial contribution;
+4. be feasible with current technology.
+
+Write each idea as one self-contained abstract: high-level yet scientifically grounded, 4-6 sentences (130-200 words), plain academic language, no headings or bullets. It is an abstract, so include no citations or reference markers.
+
+Return the ideas as a list of strings — one abstract per idea, an empty list if none clear the bar.
+"""
+
+[baseline_ideation.response_format]
+name = "BaselineIdeas"
+description = "Distinct research-idea abstracts addressing the goal (0-10 of them)."
+fields.ideas = { type = "Vec<String>", description = "Each string is one idea's abstract paragraph; only ideas meeting all four criteria, no padding." }
+
+[baseline_ideation.if.model_type.anthropic]
+tools = ["builtin.anthropic/web_search"]
+
+[baseline_ideation.if.model_type.openai_responses]
+tools = ["builtin.openai_responses/web_search"]
+
+[baseline_ideation.if.model_type.gemini]
+tools = ["builtin.gemini/google_search"]
+
+[baseline_ideation.if.model_type.xai]
+tools = ["builtin.xai/web_search"]

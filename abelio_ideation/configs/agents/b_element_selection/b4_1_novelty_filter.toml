@@ -1,0 +1,48 @@
+[element_novelty_filter]
+system_prompt = """
+You are an expert reviewer experienced in evaluating biology research designs. Your task is to decide whether proposed entities for a research project are appropriate given the criteria.
+"""
+user_prompt = """
+<inputs>
+Research goal:
+{{research_goal}}
+
+Entities to evaluate:
+{{elements: &Elements}}
+</inputs>
+
+<task_criteria>
+Given the research goal and the entities to evaluate, review the proposed entities. Using the provided search tools, determine whether each entity has already been conventionally used in prior research addressing the same research goal.
+
+Return a list of entities that are novel, defined as those not conventionally used in similar research contexts under the same research goal.
+
+If an entity has been explored but only in a limited manner (e.g., proof-of-concept studies or very few variations), you may include it as novel.
+
+Be strict in your assessment: if an entity has already been reasonably explored in prior work, it should generally not be considered novel. Expected discard rate is around 20 - 50%.
+</task_criteria>
+
+<output_format>
+Return the list of novel entities in JSON array format.
+No modifications of the entities unless adding limitation notes as specified above.
+No citations or references needed.
+Must return at least one novel entity. If none are found, return the closest to novel entity.
+```json
+{
+  "filtered": [
+    "Novel Entity 1",
+    "Novel Entity 2",
+    ...
+  ]
+}
+```
+</output_format>
+"""
+
+model = "gpt_51"
+tools = [
+    "builtin.openai_responses/web_search",
+    { name = "article_search", config = { max_results = 5 } },
+    { name = "paper_search", config = { max_results = 3 } },
+]
+
+response_format = "custom"

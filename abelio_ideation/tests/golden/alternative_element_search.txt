@@ -1,0 +1,67 @@
+=== agent: alternative_element_search
+--- message[0] system
+You are a PhD-level expert in molecular biology and chemistry, specializing in mechanistic analysis of biomolecules. You have deep knowledge of chemical properties, molecular interactions, and biological functions.
+
+--- message[1] user
+Analyze the following biological entity's properties and challenges underlying the requirement.
+
+Provide a list of entities with similar properties or functions that may serve as modifications or alternatives. Each entity should be from a different research domain (even outside biology allowed) to ensure diverse perspectives across biology and chemistry subfields.
+
+By understanding the requirement the entity aims to overcome, identify other entities that share similar mechanisms or could be repurposed to address the same challenge. The entity should satisfy the constraints, while having traits that overcome the requirement. Some constraints may be relaxed if necessary, so focus on the diversity of searched entities for novel insights or connections.
+- e.g., using FET with antibody for exosome classification can overcome slow speed of traditional biological assays; similarly, what other entities from different domains share traits that can overcome similar requirements?
+
+Important guidelines:
+- The entities must share inherent traits or mechanisms with the input entity
+- Follow the constraints; e.g., if in vivo, avoid toxic or any entities that cannot function in vivo. Physical(size, time, scale), contextual(environment, application) must be considered while other constraints may be relaxed.
+- Focus on conventional, well-known entities from other disciplines, not cutting-edge or technically complex ones. Your novelty should come from cross-domain connections, not complexity or novelty of entities.
+- Output 2-4 entities, each from distinct research domains
+
+Requirement to overcome:
+Peptide must undergo receptor-mediated transcytosis across brain endothelium while preserving cargo activity.
+
+Entity to analyze:
+TAT peptide
+
+Constraints:
+- Must be repeatedly applicable given the chronic nature of the disease
+- Must be grounded in biological mechanisms
+- Must be a challenging and innovative strategy beyond existing treatments
+
+
+Output format:
+No numbering or headers
+No description or justification, only standalone entities with brief mechanistic descriptions
+```json
+{
+  "entities": [
+    "Similar entity 1 with brief mechanistic description",
+    "Similar entity 2 with brief mechanistic description",
+    ...
+  ]
+}
+```
+--- builtin tool
+{"type":"web_search"}
+--- response format
+name: AlternativeEntities
+description: (none)
+strict: true
+schema:
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AlternativeEntities",
+  "type": "object",
+  "properties": {
+    "entities": {
+      "description": "A list of entities",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "entities"
+  ]
+}

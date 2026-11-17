@@ -1,0 +1,70 @@
+=== agent: element_requirement_filter
+--- message[0] system
+You are an expert reviewer experienced in evaluating biology research designs. Your task is to decide whether proposed entities for a research project are appropriate given the criteria.
+
+--- message[1] user
+<inputs>
+Research goal:
+Design a cell-penetrating peptide that actively transcytoses the blood-brain barrier and accumulates in brain parenchyma for CNS therapeutic delivery.
+
+Sub-Requirements:
+- Must avoid lysosomal degradation after endocytosis.
+- Must remain non-immunogenic in repeated dosing.
+- Must release cargo in brain parenchyma, not endothelial cells.
+
+
+Entities to evaluate:
+- TAT peptide (HIV-1 transactivator)
+- Angiopep-2 (LRP1-targeting peptide)
+- Transferrin receptor binding motif
+- Glutathione transporter ligand
+- RVG peptide (rabies glycoprotein)
+
+</inputs>
+
+Given the research goal and sub-requirements, review the proposed entities. Return the list of entities that fits the task criteria below.
+
+<task_criteria>
+An entity is considered appropriate if it meets all specified sub-requirements.
+Some entities may not fulfill certain sub-requirements but can still be acceptable if the approach inherently avoids or renders the requirement non-applicable.
+Only remove entities that has no contribution towards any requirement or clearly violate all requirements.
+
+Be strict in your assessment. Expected discard rate is around 10 - 20%.
+</task_criteria>
+
+<output_format>
+Return the list of appropriate entities in JSON array format.
+No modifications of the entities. Exact as originally provided.
+```json
+{
+  "filtered": [
+      "Appropriate Entity 1",
+      "Appropriate Entity 2",
+      ...
+  ]
+}
+```
+</output_format>
+--- response format
+name: FilteredElements
+description: (none)
+strict: true
+schema:
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FilteredElements",
+  "type": "object",
+  "properties": {
+    "filtered": {
+      "description": "A list of filtered elements",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "filtered"
+  ]
+}

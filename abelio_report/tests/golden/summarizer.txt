@@ -1,0 +1,34 @@
+agent: summarizer
+<<< request model
+claude-sonnet-4-5-20250929
+>>>
+<<< request max_tokens
+32000
+>>>
+<<< message 0 role=system
+
+>>>
+<<< message 1 role=user
+<input>
+# Concept: Report body
+
+Some \<escaped\> text.
+
+</input>
+
+Please create a comprehensive yet concise summary (450-600 words) from the detailed research proposal document above. This summary will be used by another AI agent to understand and reason about the proposal. The summary should capture:
+
+1. The core innovation and what problem it solves
+2. The molecular mechanisms involved
+3. The success criteria that would validate the approach, potential failure modes and fallbacks
+4. Other important context about the research concept
+
+Structure your summary to be information-dense and suitable for an agent's working memory. Focus on the content itself and mechanistic details. Include key reference citations where they support critical claims along with their respective endnotes.
+
+The goal is to compress this proposal from its current length to approximately 20-30% of the original token count while retaining all information necessary for technical reasoning, experimental design, and orchestration.
+
+Do not include citations or reference lists in your output. Only the summary text is needed.
+>>>
+<<< response_format
+none
+>>>

@@ -1,0 +1,44 @@
+[element_requirement_filter]
+system_prompt = """
+You are an expert reviewer experienced in evaluating biology research designs. Your task is to decide whether proposed entities for a research project are appropriate given the criteria.
+"""
+user_prompt = """
+<inputs>
+Research goal:
+{{research_goal}}
+
+Sub-Requirements:
+{{requirements: &MinorRequirements}}
+
+Entities to evaluate:
+{{elements: &Elements}}
+</inputs>
+
+Given the research goal and sub-requirements, review the proposed entities. Return the list of entities that fits the task criteria below.
+
+<task_criteria>
+An entity is considered appropriate if it meets all specified sub-requirements.
+Some entities may not fulfill certain sub-requirements but can still be acceptable if the approach inherently avoids or renders the requirement non-applicable.
+Only remove entities that has no contribution towards any requirement or clearly violate all requirements.
+
+Be strict in your assessment. Expected discard rate is around 10 - 20%.
+</task_criteria>
+
+<output_format>
+Return the list of appropriate entities in JSON array format.
+No modifications of the entities. Exact as originally provided.
+```json
+{
+  "filtered": [
+      "Appropriate Entity 1",
+      "Appropriate Entity 2",
+      ...
+  ]
+}
+```
+</output_format>
+"""
+
+model = "grok_41_fast"
+
+response_format = "custom"

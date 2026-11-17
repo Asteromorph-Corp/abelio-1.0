@@ -1,0 +1,88 @@
+=== agent: element_merger
+--- message[0] system
+You extract the underlying principles and non-obvious insights from given elements, discarding implementation details and conventional approaches.
+
+--- message[1] user
+You will be given a single 'requirement' along with lists of conceptual 'elements' that possibly address that requirement.
+
+Your task is NOT to organize or merge these elements as given, but to extract the fundamental principles or non-obvious insights they hint at.
+
+## Instructions(For each element, select the applicable steps below):
+
+1. Discard implementation specifics: Remove mentions of specific proteins, chemicals, model organisms, or technical procedures that constraints the element to a narrow context.
+   - Focus on the strategic approaches rather than the detailed "how to".
+
+2. Extract underlying insight: Ask "what natural phenomenon or insightful strategy can this element map to?"
+   - Think of relevant biological, chemical, or physical principles that the element leverages.
+
+3. Identify non-obvious observations: Focus on counterintuitive facts, overlooked phenomena, or surprising characteristics that researchers in the field might not consider because they're looking at the problem from inside their domain. In this observation, some specific entities may be mentioned because insightful characteristics are often tied to particular phenomena.
+
+After refining elements, add cross-domain inspirations(without stating that they are from other domains):
+   - 2-4 elements inspired from completely unrelated domains that share analogous challenges
+   - How do other systems handle the similar challenges inherent to the set of elements?
+   - How do other systems overcome biological barriers or cellular defenses?
+   - What different domain from biology has overcome similar challenges of requirements?
+   - What strategy can convert problem itself into advantage, as seen in other domains?
+
+Then, remove strategies that current researchers seems to be already pursuing.
+
+Input will be the requirement(in JSON format) and the list of elements.
+Output only the distilled elements in JSON array format with your reasoning for each distilled element.
+
+<inputs>
+Requirement:
+Major Requirement:
+Peptide must undergo receptor-mediated transcytosis across brain endothelium while preserving cargo activity.
+
+Minor Requirements:
+- Must avoid lysosomal degradation after endocytosis.
+- Must remain non-immunogenic in repeated dosing.
+- Must release cargo in brain parenchyma, not endothelial cells.
+
+
+
+Elements:
+- TAT peptide (HIV-1 transactivator)
+- Angiopep-2 (LRP1-targeting peptide)
+- Transferrin receptor binding motif
+- Glutathione transporter ligand
+- RVG peptide (rabies glycoprotein)
+
+</inputs>
+
+<output_format>
+Do not include numbering('Distilled element 1' / 'element 2' etc.) inside string. Only the content.
+Only one json object should be present in the output, formatted as below (no json object in reasoning part):
+```json
+{
+  "distilled": [
+    "Distilled element 1",
+    "Distilled element 2",
+    ...
+  ]
+}
+```
+</output_format>
+--- response format
+name: DistilledElements
+description: (none)
+strict: true
+schema:
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DistilledElements",
+  "type": "object",
+  "properties": {
+    "distilled": {
+      "description": "A list of distilled elements",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "distilled"
+  ]
+}

@@ -1,0 +1,151 @@
+agent: report_writer
+<<< request model
+claude-sonnet-4-5-20250929
+>>>
+<<< request max_tokens
+32000
+>>>
+<<< message 0 role=system
+You are a graduate student working in a Gene Editing Lab. You excel in writing concise academic presentations about a research idea or concept.
+
+>>>
+<<< message 1 role=user
+<task>
+You will be given a novel research idea or an approach, and will be tasked with writing a research proposal in report format.
+Write down the research proposal following the specifications.
+</task>
+
+<workflow>
+1. Identification of the Concept
+  - Summarize the core proposed idea in a single paragraph
+  - Focus exclusively on the idea itself
+  - Do NOT include overly specific mechanisms or discuss further implications or expected outcomes
+  - Write the 'novel idea' with a concise amount of scientific rationales
+  - Keep it high-level yet scientifically grounded: the reader must instantly understand the idea without needing further explanation
+  - This section is about delivering the novel idea itself: do not try to add any citations
+
+2. Formulate Background
+  - This is NOT about expected outcomes, impact, or defending the idea
+  - Briefly showcase the background and context of previous works related to the topic
+  - While introducing previous works (how they approached the problem), briefly show how our idea tackles the present limitations
+  - Put less emphasis on mechanistic details: focus on the overall concept and results of the prior works
+  - Must be contained in one concise paragraph
+
+3. Revise Mechanisms
+  - Understand mechanistic perspectives of the idea in detail
+  - Then, perform extensive scientific reasoning and literature search to examine how the idea works at the molecular/technical level
+  - Based on the understanding, demonstrate the idea in mechanistic level clearly and scientifically
+  - Do not add new information or methodologies - never pass beyond information provided in the original input
+    - You must think about how to 'deliver' the mechanism, not to modify or strengthen it
+  - Strictly focus ONLY on explaining how it works - do NOT discuss novelty, innovation, differentiation from other methods, or any comparative statements
+    - Remove all evaluative language such as "The innovation lies in...", "This differentiates from...", "The key advantage is..."
+  - Write in a descriptive, explanatory mode: state what happens, how components interact, what molecular events occur, in what sequence
+  - NO metaphors, analogies, or unnecessary verbose descriptions - be precise and technical
+  - Use compact, dense academic prose: favor noun phrases over verbose clauses, employ technical terminology precisely
+  - Organize content logically by mechanistic steps or components, using subsections if helpful
+  - Use concise language and avoid repetition, while not sacrificing detailedness of the explanation
+
+4. Write report
+  - Write down and output the report based on the given <output_format>.
+</workflow>
+
+<literature_search_and_referencing>
+You have access to the academic sources via article_search tool. The article_search tool returns lists of paper abstracts.
+You must use the listed tools to search for relevant academic information. Extensively search for papers related to the topic and use them to verify your scientific claims.
+- Article search results will be returned in map format with lowercase word as keys and article content as values. If referencing to article search results, cite them with exact lowercase word tags like [apple] In exact places where relevant. If multiple articles are referenced in a single place, cite them like [apple] [banana]. (no multiple citations in one bracket)
+- If you want to use citations already provided in the input, preserve the exact citation keys as they are.
+- No reference section is needed in the final report. Only use inline citations with exact citation keys.
+</literature_search_and_referencing>
+
+<writing_style>
+Structure as an English scientific report. Only output the report, and nothing else.
+Use academic casual language:
+  - No metaphors, jokes, flowery language, or rhetorical flourishes. Avoid bullet points or numbered lists.
+  - Favor compact, information-dense prose over expansive explanations.
+  - STRICTLY distinguish inferences and facts: do not use definitive language for predictions or inferences
+  - In the Mechanism section: write purely descriptively about how things work, never evaluatively about why they are novel or better
+  - Eliminate all phrases that compare, contrast, or emphasize innovation in the Mechanism section
+  - Maintain clarity and precision in scientific explanations and entity names.
+  - Be strict on citations, and never hallucinate or lie on referencing papers.
+</writing_style>
+
+<output_format>
+Output as valid JSON with the following structure. No additional text, comments, or code fences. Inside the values the corresponding to each key, write in markdown format.
+<json_schema>
+{
+  "concept_title": "(Brief title describing the core concept)",
+  "concept": "(Single paragraph describing the novel research idea with scientific rationales)",
+  "background": "(Single paragraph explaining background context and how this idea addresses current limitations)",
+  "operating_principles": "(Detailed mechanistic explanation of how the idea works at molecular/technical level. Use ### headers for sub-sections.)"
+}
+</json_schema>
+</output_format>
+
+<input>
+Concept: a split-intein {"key": [1, 2]} <b>bridge</b> for {{AAV}} delivery — ü
+
+Second paragraph.
+
+</input>
+>>>
+<<< tool article_search name
+article_search
+>>>
+<<< tool article_search description
+Provides abstracts of relevant research papers based on a query.
+Title, source, DOI, and abstract are returned for each paper.
+>>>
+<<< tool article_search parameters
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QueryInput",
+  "description": "The input for the search tool.",
+  "type": "object",
+  "properties": {
+    "query": {
+      "description": "The query to search for. Escape special characters as needed.",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "query"
+  ]
+}
+>>>
+<<< tool article_search strict
+true
+>>>
+<<< response_format schema
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ReportWriterAgentOutput",
+  "description": "Structured output from the report writer agent.",
+  "type": "object",
+  "properties": {
+    "concept_title": {
+      "description": "Brief title describing the core research concept.",
+      "type": "string"
+    },
+    "concept": {
+      "description": "Single paragraph describing the novel research idea with scientific rationales.",
+      "type": "string"
+    },
+    "background": {
+      "description": "Background context and how this idea addresses current limitations.",
+      "type": "string"
+    },
+    "operating_principles": {
+      "description": "Detailed mechanistic explanation at the molecular/technical level.",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "concept_title",
+    "concept",
+    "background",
+    "operating_principles"
+  ]
+}
+>>>

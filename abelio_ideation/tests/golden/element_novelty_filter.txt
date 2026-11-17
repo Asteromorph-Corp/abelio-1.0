@@ -1,0 +1,112 @@
+=== agent: element_novelty_filter
+--- message[0] system
+You are an expert reviewer experienced in evaluating biology research designs. Your task is to decide whether proposed entities for a research project are appropriate given the criteria.
+
+--- message[1] user
+<inputs>
+Research goal:
+Design a cell-penetrating peptide that actively transcytoses the blood-brain barrier and accumulates in brain parenchyma for CNS therapeutic delivery.
+
+Entities to evaluate:
+- TAT peptide (HIV-1 transactivator)
+- Angiopep-2 (LRP1-targeting peptide)
+- Transferrin receptor binding motif
+- Glutathione transporter ligand
+- RVG peptide (rabies glycoprotein)
+
+</inputs>
+
+<task_criteria>
+Given the research goal and the entities to evaluate, review the proposed entities. Using the provided search tools, determine whether each entity has already been conventionally used in prior research addressing the same research goal.
+
+Return a list of entities that are novel, defined as those not conventionally used in similar research contexts under the same research goal.
+
+If an entity has been explored but only in a limited manner (e.g., proof-of-concept studies or very few variations), you may include it as novel.
+
+Be strict in your assessment: if an entity has already been reasonably explored in prior work, it should generally not be considered novel. Expected discard rate is around 20 - 50%.
+</task_criteria>
+
+<output_format>
+Return the list of novel entities in JSON array format.
+No modifications of the entities unless adding limitation notes as specified above.
+No citations or references needed.
+Must return at least one novel entity. If none are found, return the closest to novel entity.
+```json
+{
+  "filtered": [
+    "Novel Entity 1",
+    "Novel Entity 2",
+    ...
+  ]
+}
+```
+</output_format>
+--- tool: article_search
+description:
+Provides abstracts of relevant research papers based on a query.
+Title, source, DOI, and abstract are returned for each paper.
+strict: true
+parameters:
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The query to search for. Escape special characters as needed."
+    }
+  },
+  "required": [
+    "query"
+  ],
+  "description": "The input for the search tool.",
+  "title": "QueryInput",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
+--- tool: paper_search
+description:
+Provides relevant research papers based on a query.
+Title and content chunks are returned in a structured format, with optional DOI and abstract if available.
+strict: true
+parameters:
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The query to search for. Escape special characters as needed."
+    }
+  },
+  "required": [
+    "query"
+  ],
+  "description": "The input for the search tool.",
+  "title": "QueryInput",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
+--- builtin tool
+{"type":"web_search"}
+--- response format
+name: FilteredElements
+description: (none)
+strict: true
+schema:
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FilteredElements",
+  "type": "object",
+  "properties": {
+    "filtered": {
+      "description": "A list of filtered elements",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "filtered"
+  ]
+}

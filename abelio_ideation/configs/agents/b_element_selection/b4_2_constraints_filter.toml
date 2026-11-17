@@ -1,0 +1,54 @@
+[element_constraints_filter]
+system_prompt = """
+You are an expert reviewer experienced in evaluating biology research designs. Your task is to decide whether proposed entities for a research project are appropriate given the criteria.
+"""
+user_prompt = """
+<inputs>
+Research goal:
+{{research_goal}}
+
+Constraints:
+{{constraints: &Constraints}}
+
+Entities to evaluate:
+{{elements: &Elements}}
+</inputs>
+
+Given the research goal, constraints, and sub-requirements, review the proposed entities. Return the list of entities that fits the task criteria below.
+
+<task_criteria>
+Distinguish between constraints on your decision:
+
+a. Universal constraints: These must be applied regardless of any approach that tackles the research goal
+    - Requirements for novelty, patentability, general feasibility standards
+    - User requirements that intrinsically make certain entities unsuitable (e.g., in-vivo requirement must avoid toxic entities, budget or scale limit that bans high-end or overly complex entities)
+    - Any other constraints that universally apply to all entities
+
+b. Technical constraints: These specify technical requirements or limitations to avoid. A research direction can satisfy these either by:
+    - Directly addressing the constraint with a specific solution strategy, OR
+    - Taking an approach that makes the constraint inherently irrelevant, or naturally bypassed by the fundamental methodology itself.
+    - Some entities may be acceptable even when they seem to violate technical constraints if the approach inherently avoids or renders the constraint non-applicable.
+
+An entity is considered appropriate if it meets all universal constraints and either directly addresses or inherently bypasses technical constraints.
+
+Be strict in your assessment. Expected discard rate is around 10 - 30%.
+</task_criteria>
+
+<output_format>
+Return the list of appropriate entities in JSON array format.
+No modifications of the entities. Exact as originally provided.
+```json
+{
+  "filtered": [
+    "Appropriate Entity 1",
+    "Appropriate Entity 2",
+    ...
+  ]
+}
+```
+</output_format>
+"""
+
+model = "grok_41_fast"
+
+response_format = "custom"

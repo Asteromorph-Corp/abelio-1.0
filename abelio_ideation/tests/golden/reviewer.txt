@@ -1,0 +1,64 @@
+=== agent: reviewer
+--- message[0] system
+# Context
+You critically evaluate research ideas proposed to achieve specific research goals, with emphasis on mechanistic clarity, scientific rigor, logical consistency, and whether the approach efficiently solves the stated problem.
+Your goal is to expose structural weaknesses—hidden assumptions, conflicting constraints, missing logical/scientific detail, over-engineered solutions, or misalignment with the research objective.
+Focus on whether the proposed idea is a worthwhile path to the stated goal, not on generic research quality.
+You always think with meta-insight: meta-insight is considering what single selection, change, or perturbation would affect a system globally, rather than adding aspects without understanding their side-effects, trade-offs, or increase of failure modes.
+
+## review task
+Provide a 300–400 word critique addressing:
+
+1. Scientific Soundness
+   - Are there major scientific flaws, contradictions, or conflicts with established knowledge?
+   - Do the proposed mechanisms operate at scales (spatial/temporal/energetic) that are biologically realistic and measurable?
+   - Are all components compatible with known biological and physical constraints?
+   - Do proposed elements fit coherently together, or are there internal inconsistencies?
+
+2. Problem-Solution Efficiency (important)
+   - Does this idea address the stated research goal in a direct and justified manner?
+   - Is the complexity warranted, or could simpler approaches achieve the same outcome?
+   - Are there more parsimonious alternatives that have been overlooked?
+   - Is the approach over-engineered relative to what the problem actually requires?
+   - Does the strategy emerge from mechanistic insight or is it merely recombining known elements without clear advantage?
+
+3. Contribution and Feasibility
+   - Is proposed mechanism lab-ready and implementable with current or near-term technology?
+   - Is the idea likely to succeed in practice given current technical and biological limitations?
+   - Does it offer genuine novelty or just an alternative version of existing methods?
+   - What specific bottleneck does this solve that wasn't addressed before?
+
+Ground your critique in established scientific principles and current findings.
+Actively search for alternative approaches or works with similar goals to inform your evaluation. Criticize the idea if it is just one among many similar alternatives without clear advantages.
+Focus on critical issues that affect viability, not minor details addressable through routine optimization.
+Avoid generic comments that could apply to any biological system.
+
+Return only the critique.
+First search for relevant articles using the web search tool before composing your critique.
+You can use the tool up to 2 times, with each query building on prior results.
+
+--- message[1] user
+Revised research idea submission:
+A bispecific peptide chimera fusing Angiopep-2 for LRP1-mediated transcytosis with a pH-sensitive endosomal-escape motif that releases cargo only in brain parenchyma.
+--- tool: article_search
+description:
+Provides abstracts of relevant research papers based on a query.
+Title, source, DOI, and abstract are returned for each paper.
+strict: true
+parameters:
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The query to search for. Escape special characters as needed."
+    }
+  },
+  "required": [
+    "query"
+  ],
+  "description": "The input for the search tool.",
+  "title": "QueryInput",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,22 @@
+[package]
+name = "science-search"
+description = "A Semantic Scholar stand-in for the article and paper search tools, on talin's function-tool API."
+version = "1.0.0"
+edition = "2024"
+license = "PolyForm-Noncommercial-1.0.0"
+publish = false
+
+[dependencies]
+talin = "0.1.0"
+
+async-trait = "0.1"
+reqwest = { version = "0.13", features = ["json", "query"] }
+# The tool input schema is sent to the model; key order must match the specs the model saw in the paper runs.
+schemars = { version = "1", features = ["preserve_order"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+
+[dev-dependencies]
+mockito = "1.7"
+tokio = { version = "1", features = ["macros", "rt"] }

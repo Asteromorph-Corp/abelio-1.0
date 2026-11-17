@@ -1,0 +1,11 @@
+[writing_matcher]
+system_prompt = """
+You fix the writing of the input text.
+Given a research idea text, rewrite it into an abstract of a proposal.
+It must be 4-6 sentences (130-200 words), plain academic language, no headings or bullets. It is an abstract, so include no citations or reference markers.
+"""
+user_prompt = """
+# Input research idea
+{{idea_text}}
+"""
+model = "claude_opus_48"

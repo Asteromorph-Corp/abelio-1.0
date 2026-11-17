@@ -1,0 +1,11 @@
+[gemini_3_5_flash]
+api_base = "https://generativelanguage.googleapis.com"
+model = "gemini-3.5-flash"
+model_type = "gemini_generate_content"
+api_key.env = "GEMINI_API_KEY"
+
+[gemini_3_pro_preview]
+api_base = "https://generativelanguage.googleapis.com"
+model = "gemini-3-pro-preview"
+model_type = "gemini_generate_content"
+api_key.env = "GEMINI_API_KEY"

@@ -1,0 +1,63 @@
+[package]
+name = "abelio_report"
+version = "1.0.0"
+edition = "2024"
+license = "PolyForm-Noncommercial-1.0.0"
+publish = false
+description = "Report writer and summarizer that turn abelio_ideation's ideas into a report and a summary"
+
+[[bin]]
+name = "abelio_report"
+path = "src/main.rs"
+required-features = ["cli"]
+
+[[bin]]
+name = "abelio_report_pure"
+path = "src/bin/pure.rs"
+required-features = ["cli"]
+
+[features]
+default = []
+cli = ["dep:clap", "dep:chrono", "dep:dotenvy", "dep:tracing-subscriber", "dep:color-eyre"]
+
+[dependencies]
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# LLM framework
+talin = "0.1.0"
+science-search = { path = "../vendor/science-search" }
+
+# Caching
+resm = { path = "../vendor/resm" }
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Observability
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"], optional = true }
+
+# Error handling
+eyre = "0.6"
+color-eyre = { version = "0.6", optional = true }
+
+# Env
+dotenvy = { version = "0.15", optional = true }
+
+# CLI
+clap = { version = "4", features = ["derive"], optional = true }
+chrono = { version = "0.4", optional = true }
+
+# Utilities
+regex = "1"
+
+[dev-dependencies]
+anyhow = "1"
+async-trait = "0.1"
+futures = "0.3"
+abelio_ideation = { path = "../abelio_ideation" }
+
+[build-dependencies]
+talin-build = "0.1.0"

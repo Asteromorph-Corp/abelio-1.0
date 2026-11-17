@@ -1,0 +1,8 @@
+/target
+.worktrees/
+.env
+.cache*/
+input/
+output/
+.venv/
+__pycache__/

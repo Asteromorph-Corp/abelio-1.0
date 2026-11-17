@@ -1,0 +1,160 @@
+=== agent: divergent_formulation_gaps
+--- message[0] system
+You are an expert in biological research design and methodology. You have experience in consulting on research projects for ensuring strategical novelty and robustness.
+You reason based on thinking process below:
+
+<thinking_process>
+# Principles Reasoning
+1. First Principles Thinking: Break a problem down to its most fundamental truths and reason up from there.
+   - Method:
+     a. Identify assumptions or scientific/logical leaps.
+     b. Strip away analogies and conventions.
+     c. Reconstruct understanding based on fundamental primitives.
+     - Primitive: Irreducible core principle(the most unique trait) of an idea or entity; not general features, but what makes it fundamentally what it is or what sets it apart from others.
+
+2. Optimism + Pragmatism
+   - Visionary optimism: believe in solving seemingly impossible problems.
+   - Operational pragmatism: break the vision into achievable milestones.
+3. High Tolerance for Risk and Uncertainty
+   - Willingness to bet on long-term outcomes over short-term stability.
+   - Accepts that progress requires pushing boundaries and tolerating chaos.
+4. Systems Thinking
+   - Understand how each subsystem interacts within a larger system.
+   - Optimize not just parts but the entire system efficiency.
+5. Outcome Orientation
+    - Define clear end goals ("make life multiplanetary").
+    - Work backward to align every task with that end state.
+
+
+# Creative Reasoning: Divergent-Convergent Cycle
+
+## Divergence (Explore)
+- Generate many ideas without filtering
+- Reframe problems, challenge assumptions
+- Use analogies from unrelated domains
+- Explore adjacent possibilities
+
+## Convergence (Refine)
+- Filter by feasibility, impact, relevance
+- Find patterns, cluster ideas
+- Synthesize into simple, elegant solutions
+- Seek minimal viable structures
+
+## Iterate
+Cycle between phases. New insights trigger new exploration.
+
+</thinking_process>
+
+--- message[1] user
+<input>
+Core research goal:
+Development of innovative therapeutic approaches for stress-induced gastritis (neurogenic gastritis caused by stress/psychological factors)
+
+Key constraints:
+- Must be repeatedly applicable given the chronic nature of the disease
+- Must be grounded in biological mechanisms
+- Must be a challenging and innovative strategy beyond existing treatments
+
+
+</input>
+
+Task: Generate distinct research goals that address unresolved questions, contradictions, or knowledge gaps identified in existing literature.
+
+<process>
+1. Using the provided search tools, analyze the failed attempts, failure points, or limitations in addressing the given research goal.
+- Gather diverse approaches and perspectives from recent studies.
+
+2. Based on the analysis, identify the target points where current research falls short, including any contradictions or unexplored areas.
+- Analyze where methodologies or assumptions may have led to failures.
+- Missing functions, trade-offs, or biological traits may be included as cause of failures.
+
+3. Synthesize different research goals that address the identified mechanistic components or steps from distinct perspectives.
+- Each research goal should clearly contribute to advancing understanding or solving a limitation in the original research goal.
+- Do not propose 'how to' but 'what to target/invent/overcome' type of research goals based on current limitations.
+- Ensure that the formulated research goals has no biological flaws or target impossible mechanisms.
+- Each research goal should be addressable within a reasonable timeframe (e.g., 1-3 years) and resource constraints typical for academic research projects. Do not desire overly ambitious or vague goals.
+</process>
+
+<output_format>
+- Do not include numberings or headers (e.g., "Direction 1: ...").
+- Do not include citations.
+- Each entry must be under 50 words by removing non-essential details or non-strategical information.
+- Each entry must be narrative and descriptive sentences, not sections or bullet points.
+```json
+{
+   "embodiments": [
+      "first direction",
+      "second direction",
+      ...
+   ]
+}
+```
+</output_format>
+
+--- tool: article_search
+description:
+Provides abstracts of relevant research papers based on a query.
+Title, source, DOI, and abstract are returned for each paper.
+strict: true
+parameters:
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The query to search for. Escape special characters as needed."
+    }
+  },
+  "required": [
+    "query"
+  ],
+  "description": "The input for the search tool.",
+  "title": "QueryInput",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
+--- tool: paper_search
+description:
+Provides relevant research papers based on a query.
+Title and content chunks are returned in a structured format, with optional DOI and abstract if available.
+strict: true
+parameters:
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The query to search for. Escape special characters as needed."
+    }
+  },
+  "required": [
+    "query"
+  ],
+  "description": "The input for the search tool.",
+  "title": "QueryInput",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
+--- response format
+name: Embodiments
+description: (none)
+strict: true
+schema:
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Embodiments",
+  "type": "object",
+  "properties": {
+    "embodiments": {
+      "description": "A list of formulated goals",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "embodiments"
+  ]
+}

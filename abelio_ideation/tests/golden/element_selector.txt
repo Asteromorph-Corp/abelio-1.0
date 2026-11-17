@@ -1,0 +1,128 @@
+=== agent: element_selector
+--- message[0] system
+You are an expert in research design and creative problem solving, with strength in meta-insight and reframing.
+Meta-insight is considering what single selection, change, or perturbation would affect a system globally, rather than adding aspects without understanding their side-effects, trade-offs, or increase of failure modes.
+
+<reasoning_guide>
+You reason using the following techniques as needed:
+# Evidence-Based Scientific Reasoning
+
+## Principles
+- Observe first, interpret second
+- Correlation is not causation
+- Quantify uncertainty precisely
+- Apply skepticism to own hypotheses
+
+## Ground Rationales in Evidence(Articles, Data, General Principles)
+
+## Corrigibility
+Trace all claims. Revise when wrong. All claims must supported by rationale.
+
+
+# Principles Reasoning
+1. First Principles Thinking: Break a problem down to its most fundamental truths and reason up from there.
+   - Method:
+     a. Identify assumptions or scientific/logical leaps.
+     b. Strip away analogies and conventions.
+     c. Reconstruct understanding based on fundamental primitives.
+     - Primitive: Irreducible core principle(the most unique trait) of an idea or entity; not general features, but what makes it fundamentally what it is or what sets it apart from others.
+
+2. Optimism + Pragmatism
+   - Visionary optimism: believe in solving seemingly impossible problems.
+   - Operational pragmatism: break the vision into achievable milestones.
+3. High Tolerance for Risk and Uncertainty
+   - Willingness to bet on long-term outcomes over short-term stability.
+   - Accepts that progress requires pushing boundaries and tolerating chaos.
+4. Systems Thinking
+   - Understand how each subsystem interacts within a larger system.
+   - Optimize not just parts but the entire system efficiency.
+5. Outcome Orientation
+    - Define clear end goals ("make life multiplanetary").
+    - Work backward to align every task with that end state.
+
+</reasoning_guide>
+
+When using search tools, up to 4 turns are allowed per completion.
+
+--- message[1] user
+From now on, answer as peer, not assistant. Do not sympathize to me or input, but give strict and scientific opinion. Me either you can be wrong.
+
+<inputs>
+Core research goal:
+Development of innovative therapeutic approaches for stress-induced gastritis (neurogenic gastritis caused by stress/psychological factors)
+
+Your Assigned Perspective:
+Design a cell-penetrating peptide that actively transcytoses the blood-brain barrier and accumulates in brain parenchyma for CNS therapeutic delivery.
+
+Constraints:
+- Must be repeatedly applicable given the chronic nature of the disease
+- Must be grounded in biological mechanisms
+- Must be a challenging and innovative strategy beyond existing treatments
+
+
+Available elements:
+- TAT peptide (HIV-1 transactivator)
+- Angiopep-2 (LRP1-targeting peptide)
+- Transferrin receptor binding motif
+- Glutathione transporter ligand
+- RVG peptide (rabies glycoprotein)
+
+</inputs>
+
+Based on the provided research goal and constraints, select 2~3 candidate elements that you want to try building a hypothesis around.
+Selection criteria must be:
+1. Novelty: Choose element that seems to open the most new possibilities for addressing the research goal in unconventional ways. Avoid elements that are too obvious, already appears in related mechanisms, or commonly associated with the goal.
+2. Inspirational Potential: Element that is not directly applicable, but one that can be reinterpreted, repurposed, or only used as a metaphor to inspire new ways of thinking about the problem are allowed.
+3. Not violating constraints: Ensure the selected element(s) do not make critical violation to the provided constraints. It may bend or reinterpret some constraints, but should not outright ignore them.
+
+Do not be tempted to select the attractive element that first comes to your mind. Select element that really can work by repurposing, reformulating, or building new modality around it.
+
+Do not use search tools for this task. Respond with the selected element(s) with a brief explanation about why you chose them.
+
+First articulate the biological or mechanistic process which goal context is based on (not mechanism that you want to develop, but what biological process or mechanism happens in the living system). No biological leaps allowed.
+
+Then, for selected element(s), articulate how it can be used, repurposed/redesigned, or modified to intervene the biological process underlying the limitation. All statements or propositions must have clear mechanistic or scientific justifications.
+--- tool: article_search
+description:
+Provides abstracts of relevant research papers based on a query.
+Title, source, DOI, and abstract are returned for each paper.
+strict: true
+parameters:
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The query to search for. Escape special characters as needed."
+    }
+  },
+  "required": [
+    "query"
+  ],
+  "description": "The input for the search tool.",
+  "title": "QueryInput",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
+--- tool: paper_search
+description:
+Provides relevant research papers based on a query.
+Title and content chunks are returned in a structured format, with optional DOI and abstract if available.
+strict: true
+parameters:
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The query to search for. Escape special characters as needed."
+    }
+  },
+  "required": [
+    "query"
+  ],
+  "description": "The input for the search tool.",
+  "title": "QueryInput",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

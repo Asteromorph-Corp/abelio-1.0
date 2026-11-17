@@ -1,0 +1,32 @@
+[divergent_formulation_scope]
+system_prompt = "{{config.divergent_formulation_system}}"
+user_prompt = """
+<input>
+{{config.divergent_formulation_input}}
+</input>
+
+Task: Generate distinct research goals that address the same phenomenon at different biological scales or organizational levels.
+
+<process>
+1. Using the provided search tools, analyze the underlying biological mechanisms involved in the research goal.
+- Do not search about how the research goal has been addressed, but focus on understanding the core biological process, mechanism, or system involved.
+
+2. Divide the analysis into different biological levels or scales, such as:
+- Molecular (e.g., genes, proteins, metabolites)
+- Cellular (e.g., cell types, organelles, cellular processes)
+- Tissue/Organ (e.g., tissue architecture, organ function)
+- Systemic (e.g., organ systems, physiological processes)
+
+3. Synthesize different research goals that address the identified distinct levels.
+- Each research goal should clearly contribute to advancing understanding or solving a limitation in the original research goal.
+- Ensure that the formulated research goals has no biological flaws or target impossible mechanisms.
+- Each research goal should be addressable within a reasonable timeframe (e.g., 1-3 years) and resource constraints typical for academic research projects. Do not desire overly ambitious or vague goals.
+</process>
+
+{{config.divergent_formulation_output_format}}
+"""
+
+model = "gpt_51"
+tools = ["builtin.openai_responses/web_search"]
+
+response_format = "custom"

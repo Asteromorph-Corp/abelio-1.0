@@ -1,0 +1,17 @@
+# Pipeline configuration for abelio_ideation.
+# All values shown are defaults. Override only what you need.
+
+num_formulations = 10
+entity_entries = 8
+sample_ratio = 0.75
+
+[refinement]
+max_rounds = 7      # Total rounds including finalization
+warmup_rounds = 2   # Rounds before the judge starts evaluating
+
+[concurrency]
+formulations = 256
+refinement = 256
+formulation_enhance = 256
+element_selection_alternative_search = 256
+rerank = 256

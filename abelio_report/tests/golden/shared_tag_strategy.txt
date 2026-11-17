@@ -1,0 +1,19 @@
+<<< tagged entry 0
+<entry>
+<entry_tag>immobilized</entry_tag>
+Gamma entry
+</entry>
+>>>
+<<< tagged entry 1
+<entry>
+<entry_tag>outflank</entry_tag>
+# Alpha
+DOI: https://doi.org/10.1/a
+</entry>
+>>>
+<<< tagged entry 2
+<entry>
+<entry_tag>proenzymes</entry_tag>
+Beta entry
+</entry>
+>>>

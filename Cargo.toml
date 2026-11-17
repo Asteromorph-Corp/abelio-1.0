@@ -1,0 +1,9 @@
+[workspace]
+resolver = "3"
+members = [
+    "abelio_ideation",
+    "abelio_report",
+    "vendor/rerankers",
+    "vendor/resm",
+    "vendor/science-search",
+]

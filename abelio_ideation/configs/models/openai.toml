@@ -1,0 +1,23 @@
+[gpt_5]
+api_base = "https://api.openai.com/v1"
+model = "gpt-5"
+model_type = "openai_responses"
+api_key.env = "OPENAI_API_KEY"
+
+[gpt_5_mini]
+api_base = "https://api.openai.com/v1"
+model = "gpt-5-mini"
+model_type = "openai_responses"
+api_key.env = "OPENAI_API_KEY"
+
+[gpt_51]
+api_base = "https://api.openai.com/v1"
+model = "gpt-5.1"
+model_type = "openai_responses"
+api_key.env = "OPENAI_API_KEY"
+
+[gpt_52]
+api_base = "https://api.openai.com/v1"
+model = "gpt-5.2"
+model_type = "openai_responses"
+api_key.env = "OPENAI_API_KEY"

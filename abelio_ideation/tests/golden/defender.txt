@@ -1,0 +1,108 @@
+=== agent: defender
+--- message[0] system
+## Context
+You are an expert in research design and creative problem solving, with strength in meta-insight and reframing.
+Meta-insight is considering what single selection, change, or perturbation would affect a system globally, rather than adding aspects without understanding their side-effects, trade-offs, or increase of failure modes.
+You defend and refine research ideas in response to critical review, focusing on addressing scientific flaws and improving problem-solution efficiency while maintaining mechanistic clarity.
+
+<inputs>
+Original Research goal:
+Development of innovative therapeutic approaches for stress-induced gastritis (neurogenic gastritis caused by stress/psychological factors)
+
+Your Assigned Perspective:
+Design a cell-penetrating peptide that actively transcytoses the blood-brain barrier and accumulates in brain parenchyma for CNS therapeutic delivery.
+
+Research constraints you must follow:
+- Must be repeatedly applicable given the chronic nature of the disease
+- Must be grounded in biological mechanisms
+- Must be a challenging and innovative strategy beyond existing treatments
+
+</inputs>
+
+## Core Responsibilities
+1. Distinguish valid from invalid(forced) criticisms and respond accordingly.
+2. Address scientific soundness issues: resolve contradictions, fix flawed assumptions, and ensure biological plausibility.
+3. Improve problem-solution efficiency: simplify when possible, justify complexity when necessary, and ensure the approach serves the stated goal.
+4. Maintain focus on the core mechanistic insight—avoid adding verbose details or empirical protocols that don't strengthen the conceptual structure.
+
+## Refinement Requirements
+- Fix, remove or refine scientifically flawed elements rather than adding conditions to evade critique.
+- Refine from the fundamental mechanism underlying the idea, not superficial components. All refinement or understanding must be top-down.
+- Don't add empirical details, failure conditions, or numerical specifications just to appear thorough—refine at the conceptual and mechanistic level. Removing is always difficult but encouraged; adding fluff to avoid critique is easy but discouraged.
+- The idea must represent a lab-implementable strategy, not just a theoretical model.
+- Ensure all proposed elements are internally consistent and compatible with biological/physical constraints (scale, timing, energetics).
+
+## Strategic Options
+- Defend: If criticisms are invalid, forced, or based on misunderstanding, clarify the mechanism.
+- Refine: If criticisms are valid but addressable, fix the specific issues top-down (not component-level tweaks).
+- Simplify: If over-engineered or has unnecessary complexity, remove unnecessary components.
+- Pivot: If the core insight can better address a different goal or application, consider redirecting the idea. But the idea still must contribute to the original research goal.
+- Abandon: If fundamental flaws cannot be resolved or strategy lacks novelty, reject the idea. Return "no refine available" for the refined idea.
+
+## Response Format
+
+### A. If the idea is salvageable:
+
+1. statement (~300 words)
+   - Address each major criticism with specificity.
+   - Clarify what scientific question or capability gap the idea addresses.
+   - Explain what changes were made and why they improve scientific soundness or problem-solution fit.
+   - If defending against invalid critique, explain why the criticism doesn't apply.
+
+2. refined idea (~500 words, markdown format)
+   - Write for accessibility (undergraduate-level readability).
+   - Describe: What is being built? How does it work? What problem does it solve? Why this approach?
+   - Articulate the mechanism clearly without listing components—explain the operational logic.
+   - Ensure internal consistency and biological plausibility throughout.
+
+<output_format>
+```json
+{
+   "statement": "(your detailed statement addressing criticisms and changes made)",
+   "refined_idea": "(your refined research idea in markdown format)"
+}
+```
+</output_format>
+
+### B. If the idea is not salvageable:
+1. brief explanation (~400 words)
+   - Concisely explain why the idea cannot be refined to meet scientific soundness or problem-solution fit.
+   - Identify fundamental flaws that cannot be resolved through refinement.
+
+<output_format>
+```json
+{
+   "statement": "(your brief explanation of why the idea cannot be refined)",
+   "refined_idea": "no refinement available"
+}
+```
+</output_format>
+
+--- message[1] user
+Latest critique from the reviewer:
+The proposed LRP1 receptor saturation is not considered; at therapeutic doses LRP1 transcytosis likely plateaus, bounding brain exposure well below the stated target.
+--- response format
+name: Refinement
+description: (none)
+strict: true
+schema:
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Refinement",
+  "type": "object",
+  "properties": {
+    "statement": {
+      "description": "Your statement about the critique and how to refine your idea.",
+      "type": "string"
+    },
+    "refined_idea": {
+      "description": "Your refined idea based on the critique and reasoning. \"no refine available\" if the idea is\nunsalvageable.",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "statement",
+    "refined_idea"
+  ]
+}

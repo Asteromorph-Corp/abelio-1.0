@@ -1,0 +1,111 @@
+=== agent: requirement_search
+--- message[0] system
+You are an expert in biology research experiment and design. You expertise in identifying what currently blocks a research idea or goal being achieved. You always think step by step and causally about in which step lacks entity, mechanism, or scientific justification.
+
+--- message[1] user
+<inputs>
+Research goal:
+Design a cell-penetrating peptide that actively transcytoses the blood-brain barrier and accumulates in brain parenchyma for CNS therapeutic delivery.
+
+User's request (original goal):
+Core Goal:
+Development of innovative therapeutic approaches for stress-induced gastritis (neurogenic gastritis caused by stress/psychological factors)
+
+Key Constraints:
+- Must be repeatedly applicable given the chronic nature of the disease
+- Must be grounded in biological mechanisms
+- Must be a challenging and innovative strategy beyond existing treatments
+
+
+</inputs>
+
+Given a research goal, use provided literature search tools to identify what is required to achieve the goal.
+Steps:
+1. Analyze the research goal to identify key objective.
+2. Configure the most important requirement(major) that must be fulfilled to achieve the goal.
+ - e.g., necessary entities, mechanisms, techniques, or validations may be required. Not the name of specific items, but the type, characteristics, role, traits, theory or framework are needed.
+ - major requirement must only require single item or concept. Do not enumerate or combine multiple aspects into one major requirement.
+ - Requirement must include specific traits or conditions needed. They may be already known or unknown, fulfilled or unfulfilled, but must be the essential piece needed to achieve the goal.
+3. Configure side requirements(minor) that support the major requirement.
+ - It may be biological context(in vivo, cell type, etc.), experimental techniques, validation methods, or theoretical frameworks.
+
+```json
+{
+  "major": "(major requirement)",
+  "minor": ["(minor requirement 1)", "(minor requirement 2)", "..."]
+}
+```
+
+Each output requirement must be under 50 words long, only identifying what is required to achieve the research goal.
+--- tool: article_search
+description:
+Provides abstracts of relevant research papers based on a query.
+Title, source, DOI, and abstract are returned for each paper.
+strict: true
+parameters:
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The query to search for. Escape special characters as needed."
+    }
+  },
+  "required": [
+    "query"
+  ],
+  "description": "The input for the search tool.",
+  "title": "QueryInput",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
+--- tool: paper_search
+description:
+Provides relevant research papers based on a query.
+Title and content chunks are returned in a structured format, with optional DOI and abstract if available.
+strict: true
+parameters:
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The query to search for. Escape special characters as needed."
+    }
+  },
+  "required": [
+    "query"
+  ],
+  "description": "The input for the search tool.",
+  "title": "QueryInput",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
+--- response format
+name: Requirement
+description: (none)
+strict: true
+schema:
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Requirement",
+  "type": "object",
+  "properties": {
+    "major": {
+      "description": "An identified major requirement",
+      "type": "string"
+    },
+    "minor": {
+      "description": "A list of minor requirements or constraints",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "major",
+    "minor"
+  ]
+}

@@ -1,0 +1,20 @@
+[concept_element_search]
+system_prompt = "{{config.concept_system}}"
+user_prompt = "{{config.concept_user}}"
+
+model = "deepseek_v32"
+
+response_format = "custom"
+max_consecutive_fails = 3
+
+[concept_element_search.if.model_type.claude_messages]
+call_options = { reasoning_effort = "medium" }
+
+[concept_element_search.if.model_type.gemini_generate_content]
+call_options = { reasoning_effort = "medium" }
+
+[concept_element_search.if.model_type.openai_responses]
+call_options = { reasoning_effort = "medium" }
+
+[concept_element_search.if.model_type.xai_responses]
+call_options = { reasoning_effort = "medium" }

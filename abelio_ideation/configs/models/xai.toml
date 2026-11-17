@@ -1,0 +1,11 @@
+[grok_41_fast]
+api_base = "https://api.x.ai/v1"
+model = "grok-4-1-fast-non-reasoning"
+model_type = "xai_responses"
+api_key.env = "XAI_API_KEY"
+
+[grok_41_fast_reasoning]
+api_base = "https://api.x.ai/v1"
+model = "grok-4-1-fast-reasoning"
+model_type = "xai_responses"
+api_key.env = "XAI_API_KEY"

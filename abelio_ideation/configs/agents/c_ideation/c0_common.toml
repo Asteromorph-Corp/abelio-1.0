@@ -1,0 +1,23 @@
+[ideator]
+abstract = true
+
+system_prompt = "{{config.ideation_system}}"
+
+model = "grok_41_fast"
+tools = [
+   { name = "article_search", config = { max_results = 5 } },
+   { name = "paper_search", config = { max_results = 3 } },
+]
+
+max_consecutive_fails = 3
+max_iterations = 5
+
+[ideator.if.model_type.claude_messages]
+call_options = { tool_choice = "auto" }
+
+[ideator.if.model_type.openai_responses]
+call_options = { tool_choice = "auto" }
+tools = ["builtin.openai_responses/web_search"]
+
+[ideator.if.model_type.xai_responses]
+tools = ["builtin.xai_responses/web_search"]
