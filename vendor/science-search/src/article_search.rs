@@ -62,13 +62,13 @@ impl Paper {
     fn render(self) -> String {
         let mut lines = Vec::new();
         if let Some(title) = self.title {
-            lines.push(format!("<title>{title}</title>"));
+            lines.push(format!("# {title}"));
         }
-        if let Some(year) = self.year {
-            lines.push(format!("<year>{year}</year>"));
-        }
-        if let Some(venue) = self.venue.filter(|venue| !venue.is_empty()) {
-            lines.push(format!("<venue>{venue}</venue>"));
+        match (self.venue.filter(|venue| !venue.is_empty()), self.year) {
+            (Some(venue), Some(year)) => lines.push(format!("Source: {venue} ({year})")),
+            (Some(venue), None) => lines.push(format!("Source: {venue}")),
+            (None, Some(year)) => lines.push(format!("Year: {year}")),
+            (None, None) => {}
         }
         let authors = self
             .authors
@@ -76,16 +76,16 @@ impl Paper {
             .filter_map(|author| author.name)
             .collect::<Vec<_>>();
         if !authors.is_empty() {
-            lines.push(format!("<authors>{}</authors>", authors.join(", ")));
+            lines.push(format!("Authors: {}", authors.join(", ")));
         }
         if let Some(doi) = self.external_ids.and_then(|ids| ids.doi) {
-            lines.push(format!("<doi>{doi}</doi>"));
+            lines.push(format!("DOI: https://doi.org/{doi}"));
         }
         if let Some(url) = self.url {
-            lines.push(format!("<url>{url}</url>"));
+            lines.push(format!("URL: {url}"));
         }
         if let Some(abstract_text) = self.r#abstract {
-            lines.push(format!("\n<abstract>{abstract_text}</abstract>"));
+            lines.push(format!("\n{abstract_text}"));
         }
         lines.join("\n")
     }

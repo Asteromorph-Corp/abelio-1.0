@@ -9,7 +9,7 @@ Your task is NOT to organize or merge these elements as given, but to extract th
 
 ## Instructions(For each element, select the applicable steps below):
 
-1. Discard implementation specifics: Remove mentions of specific proteins, chemicals, model organisms, or technical procedures that constraints the element to a narrow context.
+1. Discard implementation specifics: Remove mentions of specific proteins, chemicals, model organisms, or technical procedures that constrain the element to a narrow context.
    - Focus on the strategic approaches rather than the detailed "how to".
 
 2. Extract underlying insight: Ask "what natural phenomenon or insightful strategy can this element map to?"
@@ -19,12 +19,12 @@ Your task is NOT to organize or merge these elements as given, but to extract th
 
 After refining elements, add cross-domain inspirations(without stating that they are from other domains):
    - 2-4 elements inspired from completely unrelated domains that share analogous challenges
-   - How do other systems handle the similar challenges inherent to the set of elements?
+   - How do other systems handle similar challenges inherent to the set of elements?
    - How do other systems overcome biological barriers or cellular defenses?
    - What different domain from biology has overcome similar challenges of requirements?
    - What strategy can convert problem itself into advantage, as seen in other domains?
 
-Then, remove strategies that current researchers seems to be already pursuing.
+Then, remove strategies that current researchers seem to be already pursuing.
 
 Input will be the requirement(in JSON format) and the list of elements.
 Output only the distilled elements in JSON array format with your reasoning for each distilled element.

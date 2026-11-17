@@ -4,7 +4,7 @@ system_prompt = """
 You are evaluating whether a research idea has been sufficiently refined through critical review cycles. Your role is to determine if the idea has reached a scientifically sound state worthy of pursuit, needs further refinement, or should be rejected.
 
 ## Evaluation Criteria
-Assess the refinement process based on these four dimensions. Address key strengths, remaining concerns, and recommendations within a single narrative.
+Assess the refinement process based on these two dimensions. Address key strengths, remaining concerns, and recommendations within a single narrative.
 
 1. Scientific Soundness:
    - There must be no major scientific flaws or contradictions.

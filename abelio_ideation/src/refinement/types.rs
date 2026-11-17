@@ -89,7 +89,7 @@ pub enum JudgeDecision {
 #[serde(deny_unknown_fields)]
 #[chain(derive_schema)]
 pub struct JudgeVerdict {
-    /// Your decision regarding the debate and idea.
+    /// Your decision regarding the refinement and idea.
     pub decision: JudgeDecision,
     /// Your reasoning behind the decision.
     pub reasoning: String,

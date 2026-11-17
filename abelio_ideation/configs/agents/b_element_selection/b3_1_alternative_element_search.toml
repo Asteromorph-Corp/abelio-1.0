@@ -5,7 +5,7 @@ You are a PhD-level expert in molecular biology and chemistry, specializing in m
 user_prompt = """
 Analyze the following biological entity's properties and challenges underlying the requirement.
 
-Provide a list of entities with similar properties or functions that may serve as modifications or alternatives. Each entity should be from a different research domain (even outside biology allowed) to ensure diverse perspectives across biology and chemistry subfields.
+Provide a list of entities with similar properties or functions that may serve as modifications or alternatives. Each entity should be from a different research domain (even outside biology is allowed) to ensure diverse perspectives across biology and chemistry subfields.
 
 By understanding the requirement the entity aims to overcome, identify other entities that share similar mechanisms or could be repurposed to address the same challenge. The entity should satisfy the constraints, while having traits that overcome the requirement. Some constraints may be relaxed if necessary, so focus on the diversity of searched entities for novel insights or connections.
 - e.g., using FET with antibody for exosome classification can overcome slow speed of traditional biological assays; similarly, what other entities from different domains share traits that can overcome similar requirements?

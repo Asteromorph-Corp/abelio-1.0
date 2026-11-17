@@ -9,12 +9,12 @@ Please create a comprehensive yet concise summary (450-600 words) from the detai
 
 1. The core innovation and what problem it solves
 2. The molecular mechanisms involved
-3. The success criteria that would validate the approach, potential failure modes and fallbacks
+3. The success criteria that would validate the approach, and the potential failure modes and fallbacks
 4. Other important context about the research concept
 
-Structure your summary to be information-dense and suitable for an agent's working memory. Focus on the content itself and mechanistic details. Include key reference citations where they support critical claims along with their respective endnotes.
+Structure your summary to be information-dense and suitable for an agent's working memory. Focus on the content itself and mechanistic details.
 
-The goal is to compress this proposal from its current length to approximately 20-30% of the original token count while retaining all information necessary for technical reasoning, experimental design, and orchestration.
+The goal is to compress this proposal while retaining all information necessary for technical reasoning, experimental design, and orchestration.
 
 Do not include citations or reference lists in your output. Only the summary text is needed.
 """

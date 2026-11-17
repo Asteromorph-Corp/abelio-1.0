@@ -22,7 +22,7 @@ Entities to evaluate:
 
 </inputs>
 
-Given the research goal, constraints, and sub-requirements, review the proposed entities. Return the list of entities that fits the task criteria below.
+Given the research goal and constraints, review the proposed entities. Return the list of entities that fit the task criteria below.
 
 <task_criteria>
 Distinguish between constraints on your decision:

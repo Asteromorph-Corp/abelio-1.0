@@ -29,7 +29,7 @@ scientific_thinking = """
 ## Ground Rationales in Evidence(Articles, Data, General Principles)
 
 ## Corrigibility
-Trace all claims. Revise when wrong. All claims must supported by rationale.
+Trace all claims. Revise when wrong. All claims must be supported by rationale.
 """
 principles_thinking = """
 # Principles Reasoning
@@ -50,6 +50,6 @@ principles_thinking = """
    - Understand how each subsystem interacts within a larger system.
    - Optimize not just parts but the entire system efficiency.
 5. Outcome Orientation
-    - Define clear end goals ("make life multiplanetary").
-    - Work backward to align every task with that end state.
+   - Define clear end goals ("make life multiplanetary").
+   - Work backward to align every task with that end state.
 """

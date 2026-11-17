@@ -77,7 +77,7 @@ uv run python analysis/figure.py --data data --out results
 [`data/README.md`](data/README.md) describes each file and maps the data's labels to the paper's stages.
 
 To run the system as it was for the paper, check out the `paper` tag.
-The next section lists how that tag differs from the paper runs.
+The next section lists how that tag and `main` differ from the paper runs.
 
 ## Differences from the paper runs
 
@@ -93,6 +93,13 @@ Its code was cleaned up for release, and it behaves differently from the code be
   The model input is unchanged, and only billing differs.
 - **Report output.** The report CLI writes markdown.
   The PDFs in `artifacts/` were rendered from that markdown.
+
+### On `main`
+
+- **Prompts.** The prompts were proofread for spelling, grammar, and markup.
+  Statements that contradicted the code were also corrected: the stated search-turn limits now match the agents' iteration limits, the judge's dimension count matches the dimensions it lists, the summarizer no longer asks for citations it is told to omit, and references to a web search tool, examples, and inputs the agents do not have were removed.
+- **Citations.** The literature-search stand-in now renders results in the format the report writer parses, so report footnotes keep their titles and DOIs.
+  At `paper`, the stand-in's output drops every footnote from the report.
 
 ## Artifacts
 

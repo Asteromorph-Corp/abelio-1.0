@@ -3,8 +3,9 @@
 //! per-model-type overrides keeps one golden per former provider variant, rendered with a preset of
 //! that variant's model type.
 //!
-//! The goldens were captured from the build used for the paper runs and are never regenerated from
-//! this build. No LLM API calls are made.
+//! The goldens were captured from the build used for the paper runs and have since been edited only
+//! by the proofreading in this repository's history; they are never regenerated from this build.
+//! No LLM API calls are made.
 
 mod common;
 

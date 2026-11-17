@@ -13,7 +13,7 @@ Write down the research proposal following the specifications.
   - Summarize the core proposed idea in a single paragraph
   - Focus exclusively on the idea itself
   - Do NOT include overly specific mechanisms or discuss further implications or expected outcomes
-  - Write the 'novel idea' with a concise amount of scientific rationales
+  - Write the 'novel idea' with a concise amount of scientific rationale
   - Keep it high-level yet scientifically grounded: the reader must instantly understand the idea without needing further explanation
   - This section is about delivering the novel idea itself: do not try to add any citations
 
@@ -27,43 +27,43 @@ Write down the research proposal following the specifications.
 3. Revise Mechanisms
   - Understand mechanistic perspectives of the idea in detail
   - Then, perform extensive scientific reasoning and literature search to examine how the idea works at the molecular/technical level
-  - Based on the understanding, demonstrate the idea in mechanistic level clearly and scientifically
-  - Do not add new information or methodologies - never pass beyond information provided in the original input
+  - Based on the understanding, demonstrate the idea at the mechanistic level, clearly and scientifically
+  - Do not add new information or methodologies - never go beyond the information provided in the original input
     - You must think about how to 'deliver' the mechanism, not to modify or strengthen it
   - Strictly focus ONLY on explaining how it works - do NOT discuss novelty, innovation, differentiation from other methods, or any comparative statements
     - Remove all evaluative language such as "The innovation lies in...", "This differentiates from...", "The key advantage is..."
   - Write in a descriptive, explanatory mode: state what happens, how components interact, what molecular events occur, in what sequence
-  - NO metaphors, analogies, or unnecessary verbose descriptions - be precise and technical
+  - NO metaphors, analogies, or unnecessarily verbose descriptions - be precise and technical
   - Use compact, dense academic prose: favor noun phrases over verbose clauses, employ technical terminology precisely
   - Organize content logically by mechanistic steps or components, using subsections if helpful
-  - Use concise language and avoid repetition, while not sacrificing detailedness of the explanation
+  - Use concise language and avoid repetition, while not sacrificing detail in the explanation
 
 4. Write report
   - Write down and output the report based on the given <output_format>.
 </workflow>
 
 <literature_search_and_referencing>
-You have access to the academic sources via article_search tool. The article_search tool returns lists of paper abstracts.
+You have access to academic sources via the article_search tool. The article_search tool returns lists of paper abstracts.
 You must use the listed tools to search for relevant academic information. Extensively search for papers related to the topic and use them to verify your scientific claims.
-- Article search results will be returned in map format with lowercase word as keys and article content as values. If referencing to article search results, cite them with exact lowercase word tags like [apple] In exact places where relevant. If multiple articles are referenced in a single place, cite them like [apple] [banana]. (no multiple citations in one bracket)
+- Article search results will be returned in a map format with lowercase words as keys and article content as values. If you reference article search results, cite them with the exact lowercase word tags, like [apple], in the exact places where relevant. If multiple articles are referenced in a single place, cite them like [apple] [banana] (no multiple citations in one bracket).
 - If you want to use citations already provided in the input, preserve the exact citation keys as they are.
 - No reference section is needed in the final report. Only use inline citations with exact citation keys.
 </literature_search_and_referencing>
 
 <writing_style>
-Structure as an English scientific report. Only output the report, and nothing else.
+Structure the output as an English scientific report. Only output the report, and nothing else.
 Use academic casual language:
   - No metaphors, jokes, flowery language, or rhetorical flourishes. Avoid bullet points or numbered lists.
   - Favor compact, information-dense prose over expansive explanations.
-  - STRICTLY distinguish inferences and facts: do not use definitive language for predictions or inferences
+  - STRICTLY distinguish inferences from facts: do not use definitive language for predictions or inferences
   - In the Mechanism section: write purely descriptively about how things work, never evaluatively about why they are novel or better
   - Eliminate all phrases that compare, contrast, or emphasize innovation in the Mechanism section
   - Maintain clarity and precision in scientific explanations and entity names.
-  - Be strict on citations, and never hallucinate or lie on referencing papers.
+  - Be strict on citations, and never hallucinate or lie when referencing papers.
 </writing_style>
 
 <output_format>
-Output as valid JSON with the following structure. No additional text, comments, or code fences. Inside the values the corresponding to each key, write in markdown format.
+Output as valid JSON with the following structure. No additional text, comments, or code fences. Inside the value corresponding to each key, write in markdown format.
 <json_schema>
 {
   "concept_title": "(Brief title describing the core concept)",

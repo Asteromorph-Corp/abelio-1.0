@@ -63,3 +63,43 @@ pub fn extract_title_doi(text: &str) -> (Option<&str>, Option<&str>) {
 
     (title, doi)
 }
+
+#[cfg(test)]
+mod tests {
+    use mockito::Server;
+    use science_search::{ArticleSearchTool, QueryInput, SearchToolConfig};
+    use talin::tools::{FromConfig, Function};
+
+    use super::extract_title_doi;
+
+    #[tokio::test]
+    async fn article_search_output_yields_title_and_doi() {
+        let mut server = Server::new_async().await;
+        server
+            .mock("GET", "/paper/search")
+            .match_query(mockito::Matcher::Any)
+            .with_body(
+                r#"{"data": [{"title": "Folding at scale", "year": 2021, "venue": "Nature",
+                    "authors": [{"name": "Ada Lovelace"}], "abstract": "We fold proteins.",
+                    "url": "https://www.semanticscholar.org/paper/a",
+                    "externalIds": {"DOI": "10.1/fold"}}]}"#,
+            )
+            .create_async()
+            .await;
+        // SAFETY: only this test touches `S2_API_URL`, and the tool reads it before any request.
+        unsafe { std::env::set_var("S2_API_URL", server.url()) };
+        let tool = ArticleSearchTool::from_config(SearchToolConfig { max_results: 1 });
+
+        let blocks = tool
+            .call(QueryInput {
+                query: "protein folding".to_owned(),
+            })
+            .await
+            .unwrap();
+
+        assert_eq!(
+            extract_title_doi(&blocks[0]),
+            (Some("Folding at scale"), Some("https://doi.org/10.1/fold"))
+        );
+    }
+}

@@ -1,5 +1,6 @@
 //! Pins what every agent sends to the model against goldens captured from the build used for the
-//! paper runs. The goldens are never regenerated from this build.
+//! paper runs. Since then the goldens have been edited only by the prompt proofreading in the
+//! commit history, and are never regenerated from this build.
 
 use std::fmt::Write as _;
 use std::sync::{Arc, Mutex};

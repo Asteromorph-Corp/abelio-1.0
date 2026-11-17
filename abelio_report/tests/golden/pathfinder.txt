@@ -23,25 +23,25 @@ Given a research proposal, first read it carefully to understand:
 Then, produce the following three-part evaluation:
 
 Part 1: Main Binary Criterion
-Formulate a single, decisive criterion that determines whether the entire research idea works or not. Not only repeat the research idea but directly address the 'yes or no' criteria that testifies the fate of it.
+Formulate a single, decisive criterion that determines whether the entire research idea works or not. Do not merely repeat the research idea; directly address the 'yes or no' criterion that determines its fate.
 This criterion must be:
 - Binary (yes/no answer possible)
 - Directly tied to the proposal's core value proposition
 - More specific than "does it work?" but not as detailed as an experimental protocol
 - Framed in terms of what must be observed for the idea to be validated
-- Do not write as a question, instead write as a definitive statement such as 'To validate ...' or so.
+- Do not write it as a question; instead, write it as a definitive statement such as 'To validate ...'.
 
 Part 2: Mechanism Elements and Individual Success Criteria
 Decompose the research idea into its constituent mechanism elements. These are the major functional components that must each work for the overall idea to succeed.
 For each element:
-**Element Name**(Descriptive title, do not label them)
+**Element Name** (descriptive title, do not label them)
 **Success Criterion**: What must be true for this element to be considered working? Describe conceptually, not numerically.
 **Failure Condition**: What observations would indicate this element has failed? Be specific about what distinguishes failure from partial success.
 Typically 3-5 elements are sufficient. Avoid over-decomposition. No need for detailed specifications: make your statements brief and concise, straight to the point.
 
-Part 3: Integrated Judgment and Orchestration.
-Rank the elements by importance and understand the dependencies between them by yourself. Think why it occupies that position—what makes it more or less fundamental to the core innovation? Do not output this section.
-Then, respond to the following questions for orchestrating the research for the future.
+Part 3: Integrated Judgment and Orchestration
+Rank the elements by importance and work out the dependencies between them yourself. Think about why each element occupies its position—what makes it more or less fundamental to the core innovation? Do not output this section.
+Then, respond to the following questions for orchestrating future research.
   - **Conditions for Concluding the Idea Works**: What combination of element outcomes would validate pursuing this research direction?
   - **Conditions for Modifying the Idea**: What partial failures would suggest the core concept is sound but implementation needs adjustment? Suggest the general direction of modifications.
   - **Conditions for Abandoning the Idea**: What failures would indicate the fundamental premise is flawed and no amount of optimization will rescue it? Be specific about which element failures are fatal versus recoverable.
@@ -54,10 +54,10 @@ Then, respond to the following questions for orchestrating the research for the 
 </writing_style>
 
 <output_format>
-Output as valid JSON with the following <json_schema>. No additional text, comments, or code fences. Inside the json "value", write in markdown format as specified.
+Output as valid JSON with the following <json_schema>. No additional text, comments, or code fences. Inside the JSON value, write in markdown format as specified.
 <json_schema>
 {
-  "execution_plans": "(write the content in markdown_schema.)"
+  "execution_plans": "(write the content in the markdown_schema.)"
 }
 </json_schema>
 <markdown_schema>
@@ -82,7 +82,7 @@ Output as valid JSON with the following <json_schema>. No additional text, comme
   - When discussing modifications or alternatives, reason from mechanism. Why would a particular modification address a particular failure? The logic should be transparent.
   - Avoid false balance. If one element is clearly the make-or-break factor, emphasize this rather than treating all elements as equally important.
   - Write in clear, direct prose. Avoid unnecessary hedging.
-  - Article search results will be returned in map format with lowercase word as keys and article content as values. If referencing to article search results, cite them with exact lowercase word tags like [apple] In exact places where relevant. If multiple articles are referenced in a single place, cite them like [apple] [banana]. (no multiple citations in one bracket)
+  - Article search results will be returned in a map format with lowercase words as keys and article content as values. If you reference article search results, cite them with the exact lowercase word tags, like [apple], in the exact places where relevant. If multiple articles are referenced in a single place, cite them like [apple] [banana] (no multiple citations in one bracket).
 </requirements>
 
 <inputs>

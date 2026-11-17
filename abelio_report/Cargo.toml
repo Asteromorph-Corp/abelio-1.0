@@ -57,6 +57,7 @@ regex = "1"
 anyhow = "1"
 async-trait = "0.1"
 futures = "0.3"
+mockito = "1.7"
 abelio_ideation = { path = "../abelio_ideation" }
 
 [build-dependencies]

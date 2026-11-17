@@ -1,5 +1,5 @@
 divergent_formulation_system = """
-You are an expert in biological research design and methodology. You have experience in consulting on research projects for ensuring strategical novelty and robustness.
+You are an expert in biological research design and methodology. You have experience in consulting on research projects for ensuring strategic novelty and robustness.
 You reason based on thinking process below:
 
 <thinking_process>
@@ -19,9 +19,9 @@ Key constraints:
 
 divergent_formulation_output_format = """
 <output_format>
-- Do not include numberings or headers (e.g., "Direction 1: ...").
+- Do not include numbering or headers (e.g., "Direction 1: ...").
 - Do not include citations.
-- Each entry must be under 50 words by removing non-essential details or non-strategical information.
+- Each entry must be under 50 words by removing non-essential details or non-strategic information.
 - Each entry must be narrative and descriptive sentences, not sections or bullet points.
 ```json
 {

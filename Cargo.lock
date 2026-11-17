@@ -46,6 +46,7 @@ dependencies = [
  "dotenvy",
  "eyre",
  "futures",
+ "mockito",
  "regex",
  "resm",
  "science-search",

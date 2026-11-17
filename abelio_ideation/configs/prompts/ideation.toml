@@ -1,6 +1,6 @@
 ideation_system = """
 You are an expert in research design and creative problem solving, with strength in meta-insight and reframing.
-Meta-insight is considering what single selection, change, or perturbation would affect a system globally, rather than adding aspects without understanding their side-effects, trade-offs, or increase of failure modes.
+Meta-insight is considering what single selection, change, or perturbation would affect a system globally, rather than adding aspects without understanding their side-effects, trade-offs, or increases in failure modes.
 
 <reasoning_guide>
 You reason using the following techniques as needed:
@@ -13,7 +13,7 @@ When using search tools, up to 4 turns are allowed per completion.
 """
 
 element_selector_user = """
-From now on, answer as peer, not assistant. Do not sympathize to me or input, but give strict and scientific opinion. Me either you can be wrong.
+From now on, answer as peer, not assistant. Do not sympathize with me or the input, but give strict and scientific opinion. Either of us can be wrong.
 
 <inputs>
 Core research goal:
@@ -31,25 +31,25 @@ Available elements:
 
 Based on the provided research goal and constraints, select 2~3 candidate elements that you want to try building a hypothesis around.
 Selection criteria must be:
-1. Novelty: Choose element that seems to open the most new possibilities for addressing the research goal in unconventional ways. Avoid elements that are too obvious, already appears in related mechanisms, or commonly associated with the goal.
-2. Inspirational Potential: Element that is not directly applicable, but one that can be reinterpreted, repurposed, or only used as a metaphor to inspire new ways of thinking about the problem are allowed.
-3. Not violating constraints: Ensure the selected element(s) do not make critical violation to the provided constraints. It may bend or reinterpret some constraints, but should not outright ignore them.
+1. Novelty: Choose an element that seems to open the most new possibilities for addressing the research goal in unconventional ways. Avoid elements that are too obvious, already appear in related mechanisms, or commonly associated with the goal.
+2. Inspirational Potential: Elements that are not directly applicable, but that can be reinterpreted, repurposed, or only used as a metaphor to inspire new ways of thinking about the problem, are allowed.
+3. Not violating constraints: Ensure the selected element(s) do not make a critical violation of the provided constraints. It may bend or reinterpret some constraints, but should not outright ignore them.
 
 Do not be tempted to select the attractive element that first comes to your mind. Select element that really can work by repurposing, reformulating, or building new modality around it.
 
 Do not use search tools for this task. Respond with the selected element(s) with a brief explanation about why you chose them.
 
-First articulate the biological or mechanistic process which goal context is based on (not mechanism that you want to develop, but what biological process or mechanism happens in the living system). No biological leaps allowed.
+First articulate the biological or mechanistic process that the goal context is based on (not mechanism that you want to develop, but what biological process or mechanism happens in the living system). No biological leaps allowed.
 
-Then, for selected element(s), articulate how it can be used, repurposed/redesigned, or modified to intervene the biological process underlying the limitation. All statements or propositions must have clear mechanistic or scientific justifications.
+Then, for selected element(s), articulate how it can be used, repurposed/redesigned, or modified to intervene in the biological process underlying the limitation. All statements or propositions must have clear mechanistic or scientific justifications.
 """
 
 proposal_maker_user = """
-Now, using provided search tools, check if there were any error in your mechanistic understanding or novelty of selected element(s).
+Now, using provided search tools, check if there were any errors in your mechanistic understanding or novelty of selected element(s).
 Building on your previous analysis, develop a research proposal that fulfills the research goal by leveraging the selected element. You do not have to use all selected elements, but at least one that is the most plausible and compatible within real biological systems.
 
 Approach to inventing research formulation:
-1. Hypothesis and research goal, question cannot be distinguished.
+1. Hypothesis, research goal, and question cannot be distinguished.
 - Remember that enhancing the question context is an integral part of hypothesis generation. Good questions are often more valuable than good answers. Research starts from meaningful questions, not forced novelty or engineered solution.
 - You may slightly pivot the provided research goal so that it can fit better with the selected element.
 

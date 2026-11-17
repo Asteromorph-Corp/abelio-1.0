@@ -61,8 +61,8 @@ async fn article_search_renders_one_block_per_paper_up_to_max_results() {
     assert_eq!(
         blocks,
         vec![
-            "<title>Folding at scale</title>\n<year>2021</year>\n<venue>Nature</venue>\n<authors>Ada Lovelace, Alan Turing</authors>\n<doi>10.1/fold</doi>\n<url>https://www.semanticscholar.org/paper/a</url>\n\n<abstract>We fold proteins.</abstract>",
-            "<title>No abstract paper</title>\n<url>https://www.semanticscholar.org/paper/b</url>",
+            "# Folding at scale\nSource: Nature (2021)\nAuthors: Ada Lovelace, Alan Turing\nDOI: https://doi.org/10.1/fold\nURL: https://www.semanticscholar.org/paper/a\n\nWe fold proteins.",
+            "# No abstract paper\nURL: https://www.semanticscholar.org/paper/b",
         ]
     );
 }
@@ -132,8 +132,8 @@ async fn paper_search_renders_one_block_per_snippet() {
     assert_eq!(
         blocks,
         vec![
-            "<title>Attention paper</title>\n<authors>A. Vaswani, N. Shazeer</authors>\n<url>https://api.semanticscholar.org/CorpusId:215416146</url>\n<section>Introduction</section>\n\n<chunk>\nAttention is all you need.\n</chunk>",
-            "<title>Other paper</title>\n<url>https://api.semanticscholar.org/CorpusId:42</url>\n\n<chunk>\nSecond snippet.\n</chunk>",
+            "# Attention paper\nAuthors: A. Vaswani, N. Shazeer\nURL: https://api.semanticscholar.org/CorpusId:215416146\nSection: Introduction\n\nAttention is all you need.",
+            "# Other paper\nURL: https://api.semanticscholar.org/CorpusId:42\n\nSecond snippet.",
         ]
     );
 }

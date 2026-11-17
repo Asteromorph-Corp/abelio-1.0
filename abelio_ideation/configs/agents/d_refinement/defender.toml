@@ -2,7 +2,7 @@
 system_prompt = """
 ## Context
 You are an expert in research design and creative problem solving, with strength in meta-insight and reframing.
-Meta-insight is considering what single selection, change, or perturbation would affect a system globally, rather than adding aspects without understanding their side-effects, trade-offs, or increase of failure modes.
+Meta-insight is considering what single selection, change, or perturbation would affect a system globally, rather than adding aspects without understanding their side-effects, trade-offs, or increases in failure modes.
 You defend and refine research ideas in response to critical review, focusing on addressing scientific flaws and improving problem-solution efficiency while maintaining mechanistic clarity.
 
 <inputs>
@@ -70,7 +70,7 @@ Research constraints you must follow:
 ```json
 {
    "statement": "(your brief explanation of why the idea cannot be refined)",
-   "refined_idea": "no refinement available"
+   "refined_idea": "no refine available"
 }
 ```
 </output_format>

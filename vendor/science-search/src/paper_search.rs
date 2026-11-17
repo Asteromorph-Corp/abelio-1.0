@@ -77,23 +77,20 @@ impl SnippetMatch {
     fn render(self) -> String {
         let mut lines = Vec::new();
         if let Some(title) = self.paper.title {
-            lines.push(format!("<title>{title}</title>"));
+            lines.push(format!("# {title}"));
         }
         if !self.paper.authors.is_empty() {
-            lines.push(format!(
-                "<authors>{}</authors>",
-                self.paper.authors.join(", ")
-            ));
+            lines.push(format!("Authors: {}", self.paper.authors.join(", ")));
         }
         if let Some(corpus_id) = self.paper.corpus_id {
             lines.push(format!(
-                "<url>https://api.semanticscholar.org/CorpusId:{corpus_id}</url>"
+                "URL: https://api.semanticscholar.org/CorpusId:{corpus_id}"
             ));
         }
         if let Some(section) = self.snippet.section.filter(|section| !section.is_empty()) {
-            lines.push(format!("<section>{section}</section>"));
+            lines.push(format!("Section: {section}"));
         }
-        lines.push(format!("\n<chunk>\n{}\n</chunk>", self.snippet.text));
+        lines.push(format!("\n{}", self.snippet.text));
         lines.join("\n")
     }
 }
